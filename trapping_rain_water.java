@@ -1,0 +1,27 @@
+/***
+* "Given n non-negative integers representing an elevation map where the width of each bar is 1,
+* compute how much water it is able to trap after raining." -Leetcode problem 42
+***/
+
+import java.lang.Math;
+
+class Solution {
+    public int trap(int[] height) {
+        if(height.length == 0){
+            return 0;
+        }
+        int[] leftMax = new int[height.length];
+        int currentMax = height[0];
+        for(int i =0; i< height.length; i++){
+            currentMax = Math.max(height[i], currentMax);
+            leftMax[i] = currentMax;
+        }
+        currentMax = height[height.length-1];
+        int waterTrapped = 0;
+        for(int i=height.length-1; i>=0; i--){
+            currentMax = Math.max(height[i], currentMax);
+            waterTrapped += (Math.min(leftMax[i], currentMax) - height[i]);
+        }
+        return waterTrapped;
+    }
+}
