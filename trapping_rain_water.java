@@ -1,6 +1,10 @@
 /***
 * "Given n non-negative integers representing an elevation map where the width of each bar is 1,
 * compute how much water it is able to trap after raining." -Leetcode problem 42
+* 
+* Since water levels can never drop lower than the lower of the tallest points on each side, the this function
+* is non-decreasing from the left and non-increasing from the right until reaching the maximum in-between.
+* Calculating the maximum seen heights moving in from each side gives us an O(n) approach. 
 ***/
 
 import java.lang.Math;
